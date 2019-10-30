@@ -74,8 +74,13 @@ btnGetNextPage.addEventListener(
   'click',
   (() => {
     let page = 2
+    const maxPage = 3
     return () => {
-      if (page <= 3) {
+      if (page === maxPage) {
+        btnGetNextPage.disabled = true
+        btnGetNextPage.innerHTML = '没有下一页'
+      }
+      if (page < maxPage + 1) {
         getRequest('/page' + page, (res) => {
           const lis = JSON.parse(res).forEach((item) => {
             const li = document.createElement('li')
@@ -84,9 +89,6 @@ btnGetNextPage.addEventListener(
           })
         })
         page++
-      } else {
-        btnGetNextPage.disabled = true
-        btnGetNextPage.innerHTML = '没有下一页'
       }
     }
   })(),

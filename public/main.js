@@ -23,7 +23,7 @@ const getRequest = (url, callback) => {
 }
 
 btnGetCSS.addEventListener('click', () => {
-  getRequest('/style.css', (res) => {
+  getRequest('style.css', (res) => {
     const style = document.createElement('style')
     style.innerHTML = res
     document.head.appendChild(style)
@@ -47,7 +47,7 @@ btnGetHTML.addEventListener('click', () => {
 })
 
 btnGetXML.addEventListener('click', () => {
-  const url = '/4.xml'
+  const url = '4.xml'
   const method = 'GET'
   const xhr = new XMLHttpRequest()
   xhr.open(method, url)
@@ -64,7 +64,7 @@ btnGetXML.addEventListener('click', () => {
 })
 
 btnGetJSON.addEventListener('click', () => {
-  getRequest('/5.json', (res) => {
+  getRequest('5.json', (res) => {
     const obj = JSON.parse(res)
     console.log(obj)
   })
@@ -81,7 +81,7 @@ btnGetNextPage.addEventListener(
         btnGetNextPage.innerHTML = '没有下一页'
       }
       if (page < maxPage + 1) {
-        getRequest('/page' + page, (res) => {
+        getRequest('page' + page, (res) => {
           const lis = JSON.parse(res).forEach((item) => {
             const li = document.createElement('li')
             li.textContent = item.id
